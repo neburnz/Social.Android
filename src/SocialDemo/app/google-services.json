@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "729958942299",
+    "project_id": "firebase-social-demo"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729958942299:android:6cab6af465e0e239",
+        "android_client_info": {
+          "package_name": "com.amoxpoua.socialdemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729958942299-qujrbte3l6m6kuhis3rqd59k44cjjk30.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amoxpoua.socialdemo",
+            "certificate_hash": "3620404E4BC23E4B13536E316EA2CE52B9B3A6D9"
+          }
+        },
+        {
+          "client_id": "729958942299-glbbp6jmu90pfapbl7lgh4rvqmf3ci8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUyki_4wCb5sDGaLYARKYXfghKw8v0m4I"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
