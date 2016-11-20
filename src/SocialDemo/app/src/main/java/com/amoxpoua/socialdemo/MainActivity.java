@@ -31,24 +31,27 @@ public class MainActivity extends AppCompatActivity
 
         setContentView(R.layout.activity_main);
 
+        Log.i(TAG, "Creating SignInOptions");
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
+                .requestProfile()
                 .build();
 
+        Log.i(TAG, "Creating ApiClient");
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
         SignInButton signInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        signInButton.setSize(SignInButton.SIZE_STANDARD);
+        signInButton.setSize(SignInButton.SIZE_WIDE);
 
         findViewById(R.id.sign_in_button).setOnClickListener(this);
     }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
+        Log.e(TAG, connectionResult.getErrorMessage());
     }
 
     @Override
@@ -77,12 +80,18 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
-        Log.d(TAG, "handleSignInResult:" + result.isSuccess());
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
-            GoogleSignInAccount acct = result.getSignInAccount();
+            Log.i(TAG, "Signed in");
+            GoogleSignInAccount account = result.getSignInAccount();
+            Intent intent = new Intent(getBaseContext(), NavigationActivity.class);
+            intent.putExtra("ACCOUNT_EMAIL", account.getEmail());
+            intent.putExtra("ACCOUNT_DISPLAY_NAME", account.getDisplayName());
+            intent.putExtra("ACCOUNT_PHOTO_URL", account.getPhotoUrl());
+            startActivity(intent);
         } else {
             // Signed out, show unauthenticated UI.
+            Log.e(TAG, "Signed out");
         }
     }
 }
