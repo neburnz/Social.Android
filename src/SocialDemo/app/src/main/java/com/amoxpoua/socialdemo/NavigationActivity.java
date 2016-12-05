@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -49,8 +50,17 @@ public class NavigationActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         String accountEmail = intent.getStringExtra("ACCOUNT_EMAIL");
         String accountDisplayName = intent.getStringExtra("ACCOUNT_DISPLAY_NAME");
+        String accountPhoto = intent.getStringExtra("ACCOUNT_PHOTO_URL");
 
         View header = navigationView.getHeaderView(0);
+
+        if (accountPhoto != null) {
+
+            ImageView accountPhotoView = (ImageView) header.findViewById(R.id.accountPhoto);
+
+            new DownloadImageTask(accountPhotoView)
+                    .execute(accountPhoto);
+        }
 
         TextView accountEmailView = (TextView) header.findViewById(R.id.accountEmail);
         TextView accountDisplayNameView = (TextView) header.findViewById(R.id.accountDisplayName);
